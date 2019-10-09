@@ -1,0 +1,49 @@
+<mat-card class="box1">
+  <h2>Adresse:</h2>
+  <br>
+  <p>Vorname Nachname</p>
+  <p>Straße Hausnummer</p>
+  <p>Postleitzahl Ort</p>
+  <p>Land</p>
+  <br>
+  <p>Email: <a href="mailto:m.mustermann@domain.de">E-Mail schreiben</a></p>
+</mat-card>
+
+<br>
+
+<mat-card>
+  <h2>Nachricht senden:</h2>
+  <form>
+    <mat-form-field class="form">
+      <input
+        matInput
+        type="text"
+        formControlName="name"
+        placeholder="Ihr Name">
+          <mat-error >req...</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="form">
+      <input
+        matInput
+        type="email"
+        formControlName="email"
+        placeholder="E-Mail">
+          <mat-error >req...</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="form">
+      <textarea
+      matInput
+      rows="5"
+      formControlName="message"
+      placeholder="Nachricht"></textarea>
+        <mat-error >req...</mat-error>
+    </mat-form-field>
+    <br>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit">Senden</button>
+  </form>
+</mat-card>

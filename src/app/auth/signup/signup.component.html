@@ -1,0 +1,43 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <h1>Registrieren</h1>
+  <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+
+    <mat-radio-group class="example-radio-group">
+        <mat-radio-button class="example-radio-button" *ngFor="let role of roles" [value]="role" name="role">
+          {{role}}
+        </mat-radio-button>
+    </mat-radio-group>
+    <br><br><br>
+    <mat-radio-group class="example-radio-group">
+      <mat-radio-button class="example-radio-button" *ngFor="let gender of genders" [value]="gender" name="anrede">
+        {{gender}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <br><br><br>
+    <mat-form-field>
+        <input matInput name="firstname" ngModel type="firstname" placeholder="Vorname" #nameInput="ngModel" required firstname>
+        <mat-error *ngIf="nameInput.invalid">Please enter a valid name.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput name="lastname" ngModel type="lastname" placeholder="Nachname" #nameInput="ngModel" required lastname>
+        <mat-error *ngIf="nameInput.invalid">Please enter a valid name.</mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
+      <input matInput name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
+      <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+      <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading">Signup</button>
+
+  </form>
+</mat-card>

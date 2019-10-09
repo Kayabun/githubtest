@@ -1,0 +1,137 @@
+<mat-toolbar style="background-color:#ff9900; position: fixed; z-index: 2; top: 0;">
+
+  <span>
+    <button class="btn-header-menu" mat-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+    <a style="font-size: 90%; color:black;">&nbsp;&nbsp;&nbsp;&nbsp; Meine Web App</a>
+  </span>
+  <span class="spacer"></span>
+    <button
+    *ngIf="userIsAuthenticated"
+    mat-icon-button
+    disabled="true"
+    ><mat-icon style="color: #8bc34a; font-size: 95%;">lock</mat-icon></button>
+    <button
+    *ngIf="!userIsAuthenticated"
+    mat-icon-button
+    disabled="true"
+    ><mat-icon style="color: red; font-size: 95%;">lock_open</mat-icon></button>
+  <button mat-icon-button style="color: black;" [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon></button>
+
+</mat-toolbar>
+
+<mat-drawer-container class="example-container" [hasBackdrop]="mobileQuery.matches ? 'true' : 'false'">
+    <mat-drawer #drawer
+    [mode]="mobileQuery.matches ? 'over' : 'side'"
+    [opened]="mobileQuery.matches ? 'false' : 'true'"
+    [disableClose]="mobileQuery.matches ? 'false' : 'true'"
+    class="example-sidenav">
+      <button
+        mat-menu-item
+        routerLink="/home"
+        routerLinkActive="mat-accent">
+        <mat-icon>home</mat-icon>
+        Home
+      </button>
+      <button
+        mat-menu-item
+        routerLink="/projects"
+        routerLinkActive="mat-accent">
+        <mat-icon>public</mat-icon>
+        Projekte
+      </button>
+      <button
+        mat-menu-item
+        routerLink="/blog"
+        routerLinkActive="mat-accent">
+        <mat-icon>rss_feed</mat-icon>
+        Blog
+      </button>
+      <button
+        mat-menu-item
+        routerLink="/aboutme"
+        routerLinkActive="mat-accent">
+        <mat-icon>person</mat-icon>
+        Über mich
+      </button>
+      <button
+        mat-menu-item
+        routerLink="/contact"
+        routerLinkActive="mat-accent">
+        <mat-icon>chat</mat-icon>
+        Kontakt
+      </button>
+      <button
+        *ngIf="userIsAuthenticated"
+        mat-menu-item
+        routerLink="/dashboardintern"
+        routerLinkActive="mat-accent">
+        <mat-icon style="color: red;">home</mat-icon>
+        Dashboard
+      </button>
+      <button
+        *ngIf="userIsAuthenticated"
+        mat-menu-item
+        routerLink="/user-table"
+        routerLinkActive="mat-accent">
+        <mat-icon style="color: red;">folder_shared</mat-icon>
+        Tabellen-Test
+      </button>
+      <button
+        *ngIf="userIsAuthenticated"
+        mat-menu-item routerLink="/create"
+        routerLinkActive="mat-accent">
+        <mat-icon style="color: red;">add_circle_outline</mat-icon>
+        add Post
+      </button>
+      <button
+        *ngIf="userIsAuthenticated"
+        mat-menu-item
+        routerLink="/auth/signup"
+        routerLinkActive="mat-accent">
+        <mat-icon style="color: red;">person_add</mat-icon>
+        Registrieren
+      </button>
+    </mat-drawer>
+
+    <mat-drawer-content class="snav-content">
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+
+  <mat-menu #menu="matMenu">
+    <li>
+      <button mat-menu-item (click)="refresh()"><mat-icon>refresh</mat-icon>Aktualisieren</button>
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <button mat-menu-item routerLink="/auth/login" routerLinkActive="mat-accent"><mat-icon>exit_to_app</mat-icon>Login</button>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <button mat-menu-item (click)="onLogout()"><mat-icon style="color:red;">logout</mat-icon>Logout</button>
+    </li>
+  </mat-menu>
+
+
+
+
+<!--
+    <ul>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/data-table-users" routerLinkActive="mat-accent"><mat-icon>folder_shared</mat-icon></a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/create" routerLinkActive="mat-accent"><mat-icon>add_circle_outline</mat-icon></a>
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button routerLink="/auth/login" routerLinkActive="mat-accent"><mat-icon>exit_to_app</mat-icon></a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/auth/signup" routerLinkActive="mat-accent"><mat-icon>person_add</mat-icon></a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <button mat-button (click)="onLogout()"><mat-icon style="color:red;">logout</mat-icon></button>
+    </li>
+  </ul>
+-->
